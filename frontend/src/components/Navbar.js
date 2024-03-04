@@ -3,9 +3,11 @@ import { useLogout } from "../hooks/useLogout";
 
 const Navbar = () => {
   const { logout } = useLogout();
+
   const handleLogOut = () => {
     logout();
   };
+
   return (
     <header>
       <div className="container">
