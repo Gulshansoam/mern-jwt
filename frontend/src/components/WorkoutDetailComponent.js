@@ -1,16 +1,22 @@
 import React from "react";
 import { useWorkoutContext } from "../hooks/useWorkoutsContext";
 import fromatDistanceToNow from "date-fns/formatDistanceToNow";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const WorkoutDetailComponent = (props) => {
   const { workout } = props;
   const { dispatch } = useWorkoutContext();
+  const { user } = useAuthContext();
 
   const handleDelete = async () => {
+    if (!user) return;
+
     const response = await fetch("/api/workouts/" + workout._id, {
       method: "DELETE",
+      Authorization: `Bearer ${user.token}`,
     });
     const json = await response.json();
+
     if (!response.ok) throw new Error("Workout Not Deleted");
     else dispatch({ type: "DELETE_WORKOUT", payload: json });
   };
