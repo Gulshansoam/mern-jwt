@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useWorkoutContext } from "../hooks/useWorkoutsContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+
 const WorkoutForm = () => {
   const { dispatch } = useWorkoutContext();
   const [title, setTitle] = useState("");
